@@ -48,6 +48,9 @@ void Debugger::setup( void ) {
 	chip.reset();
 
 	// Load ROM
+	if ( !chip.load_rom( "C:\\Users\\Danny\\source\\repos\\Chip8\\Chip8\\Roms\\IBM.ch8" ) ) {
+		return;
+	}
 
 	// No errors, start emulator
 	running = true;
@@ -86,7 +89,16 @@ void Debugger::update( void ) {
 }
 
 void Debugger::render( void ) {
-	// Render
+
+	if ( chip.draw_ready ) {
+		chip.draw_ready = false;
+
+		SDL_UpdateTexture( texture, NULL, chip.display, 64 * sizeof( uint32_t ) );
+		SDL_RenderClear( renderer );
+		SDL_RenderCopy( renderer, texture, NULL, NULL );
+		SDL_RenderPresent( renderer );
+
+	}
 }
 
 void Debugger::run( void ) {
