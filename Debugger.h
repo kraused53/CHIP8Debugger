@@ -9,6 +9,7 @@ const int WINDOW_WIDTH = 64;
 const int WINDOW_HEIGHT = 32;
 
 #include "Logger.h"
+#include "CHIP8.h"
 
 class Debugger {
 private:
@@ -20,6 +21,9 @@ private:
 	// Emulation Variables
 	bool running;
 	bool initialized;
+
+	// CHIP 8 instance
+	CHIP8 chip;
 
 public:
 	// Construction

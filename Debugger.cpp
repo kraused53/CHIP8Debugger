@@ -45,6 +45,10 @@ Debugger::~Debugger( void ) {
 }
 
 void Debugger::setup( void ) {
+	chip.reset();
+
+	// Load ROM
+
 	// No errors, start emulator
 	running = true;
 }
@@ -76,6 +80,7 @@ void Debugger::input( void ) {
 
 void Debugger::update( void ) {
 	// Handle emulation
+	chip.step();
 
 	// Handle timing
 }
